@@ -3,6 +3,7 @@
   (:require [om.core :as om :include-macros true]
             [om-tools.core :refer-macros [defcomponent]]
             [sablono.core :refer-macros [html]]
+            [hackernews.utils :refer [send!]]
             [cljs-http.client :as http]
             [cljs.core.async :refer [alts! chan put!]]))
 
@@ -13,13 +14,6 @@
 
 (def hacker-news-source
   "https://hn.algolia.com/api/v1/search_by_date?tags=story&hitsPerPage=200")
-
-(defn send!
-  [owner message]
-  (let [event-channel (om/get-shared owner :event-channel)]
-    (fn [event]
-      (put! event-channel message)
-      (.stopPropagation event))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; UI Rendering
