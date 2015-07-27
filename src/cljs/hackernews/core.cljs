@@ -50,7 +50,11 @@
         [:div.col-xs-10
          (om/build-all headline-view
                        (-> data :headlines :hits)
-                       {:key :objectID})]]])))
+                       {:key :objectID})]]
+
+       [:div.row
+        [:div.col-xs-10.col-xs-offset-2
+         [:code (pr-str data)]]]])))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Event Handling
